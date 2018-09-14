@@ -12,3 +12,44 @@
 
 ### Ex 2: Make
 - ```Makefile:4: *** missing separator.  Stop.``` - This and other errors can be caused by inconsistent use of tab and space.
+- Example makefile:
+```
+CFLAGS=-Wall -g
+OUTDIR=$(shell pwd)/out/
+NAME=$(notdir $(shell pwd))
+C_EXTENSION=.c
+EXECUTABLE_EXTENSION=.exe
+MACRO=
+.SILENT: r  	# silence the output for the 'make run'. The echo statements are not silenced
+
+a: cl cpl
+
+cl: 					# make clean
+	@echo "... cleaning $(OUTDIR) directory ..."
+	rm -rf $(OUTDIR)
+
+cpl:					# make compile
+	@echo "... creating the output directory ..."
+	mkdir $(OUTDIR)
+	
+	@echo "... compiling $(NAME) ..."
+	cc $(CFLAGS) $(MACRO) -o $(addprefix $(OUTDIR), $(NAME))$(EXECUTABLE_EXTENSION) $(NAME)$(C_EXTENSION)
+
+r:						# make run
+	@echo "... running $(NAME)$(EXECUTABLE_EXTENSION) -- program output after the dots ..."
+	@echo "........................................................."
+	$(OUTDIR)$(NAME)$(EXECUTABLE_EXTENSION)
+	
+tm: 					# make testmake. This one tests / prints out the variables that are set or constructed. Used for quick debugging
+	@echo NAME == $(NAME)
+	@echo OUTDIR == $(OUTDIR)
+	@echo CC CMD == cc $(CFLAGS) $(MACRO) -o $(addprefix $(OUTDIR), $(NAME))
+
+grnd: 				# for valgrind invocation
+	@echo "... running with Valgrind ..."
+	valgrind $(RUNCMD) $(PARAM) 
+```
+
+### Ex 3: printf
+- All printf() format specifiers: http://www.cplusplus.com/reference/cstdio/printf/
+- %010d - when you want there to be 0s before the value of your variable.
