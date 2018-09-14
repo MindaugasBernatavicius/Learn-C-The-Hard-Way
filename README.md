@@ -40,3 +40,6 @@ cpl:					# make compile
 ### Ex 3: printf
 - All printf() format specifiers: http://www.cplusplus.com/reference/cstdio/printf/
 - %010d - when you want there to be 0s before the value of your variable.
+
+### Ex 4: GDB & LLDB
+- 
