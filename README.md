@@ -34,20 +34,7 @@ cpl:					# make compile
 	
 	@echo "... compiling $(NAME) ..."
 	cc $(CFLAGS) $(MACRO) -o $(addprefix $(OUTDIR), $(NAME))$(EXECUTABLE_EXTENSION) $(NAME)$(C_EXTENSION)
-
-r:						# make run
-	@echo "... running $(NAME)$(EXECUTABLE_EXTENSION) -- program output after the dots ..."
-	@echo "........................................................."
-	$(OUTDIR)$(NAME)$(EXECUTABLE_EXTENSION)
-	
-tm: 					# make testmake. This one tests / prints out the variables that are set or constructed. Used for quick debugging
-	@echo NAME == $(NAME)
-	@echo OUTDIR == $(OUTDIR)
-	@echo CC CMD == cc $(CFLAGS) $(MACRO) -o $(addprefix $(OUTDIR), $(NAME))
-
-grnd: 				# for valgrind invocation
-	@echo "... running with Valgrind ..."
-	valgrind $(RUNCMD) $(PARAM) 
+[cut]
 ```
 
 ### Ex 3: printf
